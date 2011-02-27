@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Gato.Tests
 {
     [TestFixture]
-    public class ObservableInputStreamTests
+    public class InputStreamTests
     {
         ArraySegment<byte> ArrSeg(string str)
         {
