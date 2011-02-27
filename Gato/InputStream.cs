@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Gato
 {
-    class InputStream : Stream
+    public class InputStream : Stream
     {
         Action cancel;
 

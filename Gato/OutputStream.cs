@@ -32,9 +32,6 @@ namespace Gato
         {
             EnsureNotCompleted();
 
-            if (asyncResult != null)
-                throw new InvalidOperationException("Already writing.");
-
             asyncResult = new AsyncResult(callback, state);
 
             if (next(new ArraySegment<byte>(buffer, offset, count), () => asyncResult.SetAsCompleted(null, false)))
@@ -49,14 +46,10 @@ namespace Gato
                 throw new ArgumentException("Invalid IAsyncResult argument.");
 
             asyncResult.EndInvoke();
-            asyncResult = null;
         }
 
         public override void Close()
         {
-            if (asyncResult != null)
-                throw new InvalidOperationException("Write is pending.");
-
             EnsureNotCompleted();
             completed = true;
             complete();
